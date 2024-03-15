@@ -1,8 +1,12 @@
 import { Component } from "react";
+import Spinner from "react-bootstrap/Spinner";
+import Alert from "react-bootstrap/Alert";
 
 class NewReleases extends Component {
   state = {
     films: [],
+    isLoading: true,
+    isError: false,
   };
 
   fetchMoviesHarryPotter = () => {
@@ -18,10 +22,15 @@ class NewReleases extends Component {
         console.log(moviesObj.Search);
         this.setState({
           films: moviesObj.Search,
+          isLoading: false,
         });
       })
       .catch((error) => {
         console.log("ERRORE", error);
+        this.setState({
+          isLoading: false,
+          isError: true,
+        });
       });
   };
 
@@ -31,36 +40,28 @@ class NewReleases extends Component {
 
   render() {
     return (
-      <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 mb-4">
-        {this.state.films.map((film) => {
-          return (
-            <div className="col mb-2 text-center px-1" key={film.imdbID}>
-              <img className="img-fluid h-100 object-fit-cover " src={film.Poster} alt={film.Title} />
-            </div>
-          );
-        })}
-      </div>
+      <>
+        {this.state.isLoading === true && (
+          <div>
+            <Spinner animation="border" variant="info" />
+          </div>
+        )}
 
-      // <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 mb-4">
-      //   <div className="col mb-2 text-center px-1">
-      //     <img className="img-fluid" src={"13.png"} alt="movie picture" />
-      //   </div>
-      //   <div className="col mb-2 text-center px-1">
-      //     <img className="img-fluid" src={"14.png"} alt="movie picture" />
-      //   </div>
-      //   <div className="col mb-2 text-center px-1">
-      //     <img className="img-fluid" src={"15.png"} alt="movie picture" />
-      //   </div>
-      //   <div className="col mb-2 text-center px-1">
-      //     <img className="img-fluid" src={"16.png"} alt="movie picture" />
-      //   </div>
-      //   <div className="col mb-2 text-center px-1">
-      //     <img className="img-fluid" src={"17.png"} alt="movie picture" />
-      //   </div>
-      //   <div className="col mb-2 text-center px-1">
-      //     <img className="img-fluid" src={"18.png"} alt="movie picture" />
-      //   </div>
-      // </div>
+        {this.state.isError === true && (
+          <div>
+            <Alert variant="danger">Errore nel caricamento!</Alert>
+          </div>
+        )}
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 mb-4">
+          {this.state.films.map((film) => {
+            return (
+              <div className="col mb-2 text-center px-1" key={film.imdbID}>
+                <img className="img-fluid h-100 object-fit-cover " src={film.Poster} alt={film.Title} />
+              </div>
+            );
+          })}
+        </div>
+      </>
     );
   }
 }
