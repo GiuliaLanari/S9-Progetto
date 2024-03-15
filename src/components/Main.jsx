@@ -1,6 +1,7 @@
-import TrendingNow from "./TrendingNow";
-import WatchItAgain from "./WatchItAgain";
-import NewReleases from "./NewReleases";
+// import TrendingNow from "./TrendingNow";
+// import WatchItAgain from "./WatchItAgain";
+// import NewReleases from "./NewReleases";
+import UnicaFetchMovies from "./UnicaFetchMovies";
 
 const Main = function () {
   return (
@@ -71,11 +72,15 @@ const Main = function () {
           </div>
         </div>
         <h4 className="text-white">Trending Now</h4>
-        <TrendingNow />
+        {/* <TrendingNow /> */}
+        <UnicaFetchMovies asin={"harry%20potter"} />
+
         <h4 className="text-white">Watch it Again</h4>
-        <WatchItAgain />
+        {/* <WatchItAgain /> */}
+        <UnicaFetchMovies asin={"star%20trek"} />
         <h4 className="text-white">New Releases</h4>
-        <NewReleases />
+        {/* <NewReleases /> */}
+        <UnicaFetchMovies asin={"dragon%20ball"} />
       </div>
     </div>
   );
