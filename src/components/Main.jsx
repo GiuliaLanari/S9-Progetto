@@ -72,7 +72,7 @@ const Main = function () {
           </div>
         </div>
         <h4 className="text-white">Trending Now</h4>
-        {/* <TrendingNow /> */}
+        {/* <TrendingNow /> prima ho pensato a generare delle singole fetch, ma poi le ho fatte dinamiche usando una sola e dando una props che cambia*/}
         <UnicaFetchMovies asin={"harry%20potter"} />
 
         <h4 className="text-white">Watch it Again</h4>
