@@ -35,7 +35,7 @@ class WatchItAgain extends Component {
         {this.state.films.map((film) => {
           return (
             <div className="col mb-2 text-center px-1" key={film.imdbID}>
-              <img className="img-fluid" src={film.Poster} alt={film.Title} />
+              <img className="img-fluid h-100 object-fit-cover" src={film.Poster} alt={film.Title} />
             </div>
           );
         })}
